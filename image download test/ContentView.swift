@@ -9,16 +9,24 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+            VStack(spacing: 100) {
+                AsyncImage(url: URL(string: "https://hws.dev/img/logo.png")) { image in
+                    image
+                        .resizable()
+                        .scaledToFit()
+                } placeholder: {
+                    ProgressView()
+                }
+                NavigationLink(destination: NextView()) {
+                    Text("Next View")
+                }
+                .buttonStyle(.borderedProminent)
+                .tint(.red)
+            }
         }
-        .padding()
     }
 }
-
 #Preview {
     ContentView()
 }
